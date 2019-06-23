@@ -105,6 +105,58 @@ function getBookByAuthor(req, res)
 
 
 
+
+// libro por autor y categoria
+function getBookByAuthorAndCategoriy(req, res)
+{
+	let perPage = 10;
+	let Start =  req.params.start || 1;
+	let author = req.params.author;
+	let serie =  req.params.serie;
+
+	let Authores = author.split('---');
+	let Series = serie.split('---');
+
+	console.log(Authores);
+	console.log(Series);
+
+
+	var data = {
+            "author_sort": { "$in" : Authores} ,
+			"series_index": { "$in" : Series}
+	}
+	// let End =  req.params.end;
+	console.log(data);
+	BooksLibrary.find(data, (error, book) =>
+	{
+		if(error)
+		{
+			return res.status(500).send({message: `Error al realizar la peticion: ${error}`});
+		}
+		else if(!book || book == [] || book.length == 0)
+		{
+			return res.status(404).send({message: `No Exite Libro asociado a autor seleccionado: ${error}`});
+		}
+		else
+		{
+			BooksLibrary.count(data, function(err, c) {
+				return res.status(200).send(
+					{
+						book,
+						current: Start,
+						pages: Math.ceil(c / perPage)
+					
+					})
+		   });
+
+			// console.log("data: "+BooksLibrary.count(data));
+			
+		}
+	}).skip((perPage * Start) - perPage).limit(perPage);
+}
+
+
+
 const BooksLibrary = require('../model/book');
 
 
@@ -115,4 +167,5 @@ module.exports =
 	getBook,
 	getBookByCategory,
 	getBookByAuthor,
+	getBookByAuthorAndCategoriy,
 }

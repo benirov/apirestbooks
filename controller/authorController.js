@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 
 function getAuthors(req, res)
 {
+
+	let perPage = 10;
+	let Start =  req.params.start || 1;
 	mongoose.connection.db.collection("author", function (err, collection) {
 		collection.find({}).toArray(function(error, authors)
 		{
@@ -15,11 +18,30 @@ function getAuthors(req, res)
 				}
 				else
 				{
-					return res.status(200).send({authors});	
+
+					collection.count((errorP, countP) =>
+					{
+
+						if(errorP)
+						{
+							return res.status(500).send({message: `error al realizar la peticiòn: ${error}`});
+						}else
+						{
+							return res.status(200).send(
+								{
+									authors,
+									current: Start,
+									pages: Math.ceil(countP / perPage)
+								
+								})
+						}
+
+					});
+					// return res.status(200).send({authors});	
 				}
 		});
 		
-	});
+	}).skip((perPage * Start) - perPage).limit(perPage);
 }
 
 
