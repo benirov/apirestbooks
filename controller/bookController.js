@@ -41,6 +41,7 @@ function getBooks(req, res)
 
 function getBook(req, res)
 {
+	res.header("Access-Control-Allow-Origin", "*");
 	let id = req.params.id;
 	BooksLibrary.findById(id, (error, book) =>
 	{

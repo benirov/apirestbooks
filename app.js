@@ -30,6 +30,11 @@ app.options('*', cors(corsOptions));
 app.get('/', cors(corsOptions), (req, res, next) => {
   res.json({ message: 'This route is CORS-enabled for an allowed origin.' });
 })
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 const api = require('./route'); 
 
 app.use(bodyParser.urlencoded({extended : false}));  
