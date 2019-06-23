@@ -39,9 +39,9 @@ function getAuthors(req, res)
 					});
 					// return res.status(200).send({authors});	
 				}
-		});
+		}).skip((perPage * Start) - perPage).limit(perPage);
 		
-	}).skip((perPage * Start) - perPage).limit(perPage);
+	});
 }
 
 
