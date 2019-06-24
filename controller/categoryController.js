@@ -20,7 +20,7 @@ function getCategory(req, res)
 
 
 
-const Category = require('../model/categoryController');
+const Category = require('../model/category');
 
 
 
