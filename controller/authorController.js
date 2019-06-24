@@ -10,7 +10,7 @@ function getAuthors(req, res)
 	let perPage = 10;
 	let Start =  req.params.start || 1;
 	mongoose.connection.db.collection("author", function (err, collection) {
-		collection.find({}).toArray(function(error, authors)
+		collection.find({}).skip((perPage * Start) - perPage).limit(perPage).toArray(function(error, authors)
 		{
 				if(error)
 				{
@@ -39,7 +39,7 @@ function getAuthors(req, res)
 					});
 					// return res.status(200).send({authors});	
 				}
-		}).skip((perPage * Start) - perPage).limit(perPage);
+		});
 		
 	});
 }
