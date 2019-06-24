@@ -3,6 +3,7 @@
 const express = require('express');
 const authorCtrl = require('../controller/authorController');
 const bookCtrl = require('../controller/bookController');
+const categoryCtrl = require('../controller/categoryController');
 
 const api = express.Router();
 
@@ -10,7 +11,9 @@ const api = express.Router();
 
 api.get('/authors/:start', authorCtrl.getAuthors); 
 api.get('/authors/:id', authorCtrl.getAuthor);
-api.get('/authorsbyname/:string', authorCtrl.getAuthorsLikeName);
+api.get('/category', categoryCtrl.getCategory);
+
+api.get('/authors/:id', authorCtrl.getAuthor);
 
 api.get('/books/:start', bookCtrl.getBooks);
 
