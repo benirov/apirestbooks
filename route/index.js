@@ -8,7 +8,7 @@ const api = express.Router();
 
 /*  Routes of books with api */
 
-api.get('/authors/:start', authorCtrl.getAuthors);
+api.get('/authors/:start', authorCtrl.getAuthors); 
 api.get('/authors/:id', authorCtrl.getAuthor);
 api.get('/authorsbyname/:string', authorCtrl.getAuthorsLikeName);
 
