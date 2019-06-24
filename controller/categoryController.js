@@ -1,10 +1,12 @@
 'use strict';
-
+const Category = require('../model/category');
 
 
 function getCategory(req, res)
 {	
-	Category.find({}, (error, Category) =>
+
+	console.log(Category);
+	Category.find({}, (error, category) =>
 	{
 		if(error)
 		{
@@ -12,15 +14,11 @@ function getCategory(req, res)
 		}
 		else
 		{
-			return res.status(200).send(Category)
+			return res.status(200).send(category)
 		}
 		
 	});
 }
-
-
-
-const Category = require('../model/category');
 
 
 

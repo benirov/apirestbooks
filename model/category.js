@@ -1,10 +1,10 @@
 'use strict'
 
 const mongoose = require('mongoose');
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs')
 
-const categoryModel = schema
+const categoryModel = Schema
 (
 	{
 		id: Number,
