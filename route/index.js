@@ -4,6 +4,7 @@ const express = require('express');
 const authorCtrl = require('../controller/authorController');
 const bookCtrl = require('../controller/bookController');
 const categoryCtrl = require('../controller/categoryController');
+const calificationController = require('../controller/calificationController');
 
 const api = express.Router();
 
@@ -21,6 +22,8 @@ api.get('/book/:id', bookCtrl.getBook);
 
 api.get('/book/category/:category', bookCtrl.getBookByCategory);
 api.get('/book/author/:author', bookCtrl.getBookByAuthor);
+api.get('/calification/:idBook', calificationController.getCalificationByBook);
+api.post('/calification', bookCtrl.insetCalification);
 
 
 api.get('/book/findByAuthorAndCategort/:author/:serie/:start', bookCtrl.getBookByAuthorAndCategoriy);
