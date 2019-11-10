@@ -8,7 +8,7 @@ function getCalificationByBook(req, res)
 {
 	let idBookParam =  req.params.idBook;
 	mongoose.connection.db.collection("califications", function (err, collection) {
-		collection.find({idBook: idBookParam}, (error, califications) =>
+		collection.find({idBook: idBookParam}).toArray(function(error, califications)
 		{
 			console.log(califications);
 				if(error)
