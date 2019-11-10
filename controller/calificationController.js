@@ -59,7 +59,7 @@ const calificationModel = require('../model/calification');
 module.exports = 
 {
 	getCalificationByBook,
-	insetCalification,
+	insetCalification
 }
 
 

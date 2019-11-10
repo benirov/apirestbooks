@@ -23,7 +23,7 @@ api.get('/book/:id', bookCtrl.getBook);
 api.get('/book/category/:category', bookCtrl.getBookByCategory);
 api.get('/book/author/:author', bookCtrl.getBookByAuthor);
 api.get('/calification/:idBook', calificationController.getCalificationByBook);
-api.post('/calification', bookCtrl.insetCalification);
+api.post('/calification', calificationController.insetCalification);
 
 
 api.get('/book/findByAuthorAndCategort/:author/:serie/:start', bookCtrl.getBookByAuthorAndCategoriy);
