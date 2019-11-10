@@ -1,10 +1,6 @@
 'use strict';
 
 const nodemailer  = require('nodemailer');
-const buildTemplate  = require('../services/buildTemplate');
-const User = require('./userController.js');
-
-const services  = require('../services/auth');
 
 // email sender function
 function sendEmail(req, res)
@@ -17,9 +13,12 @@ function sendEmail(req, res)
 	// 	];
 
 		subject = req.body.subject;
+		nombreLibro = req.body.nombre;
+		idBook = req.body.idBook;
 
 	// tipo correo: 
-	let HTMLTemplate = buildTemplate.buildTemplate(1)
+	let HTMLTemplate = '<p>el siguiente libro esta reportado</p><br>nombre: '+ nombreLibro+
+	'<br>ID : '+idBook;
 
 	
 // Definimos el transporter
@@ -29,15 +28,15 @@ function sendEmail(req, res)
 	    port: 465,
 	    secure: true,
         auth: {
-            user: 'perrunoacount@gmail.com',
-            pass: 'perruno1234'
+            user: 'freebookpersonala77@gmail.com',
+            pass: 'be.37/22'
         }
     });
 
 
     // Definimos el email
 var mailOptions = {
-    from: 'perrunoacount@gmail.com',
+    from: 'freebookpersonala77@gmail.com',
     to: maillist,
     subject: subject,
     text: 'Correo',
@@ -54,120 +53,9 @@ transporter.sendMail(mailOptions, function(error, info){
 });
 }
 
-
-
-function buildEmail(type, data, token, destinyMail)
-{
-	 let destinyEmail;
-	let subject;
-	switch(type)
-	{
-		case 1:
-		subject = "Confirmaciòn de correo";
-		destinyEmail = data.email;
-		break;
-
-		case 2:
-		subject = "Nueva mascota";
-		destinyEmail = destinyMail;
-		break;
-
-		case 3:
-		subject = "¡Alguien se ha interesado por tu mascota!";
-		destinyEmail = destinyMail;
-		break;
-
-		case 4:
-		subject = "Aprobaciòn de solicitud";
-		destinyEmail = data.email;
-		break;
-
-		case 5:
-		subject = " solicitud no aprobada";
-		destinyEmail = data.email;
-		break;
-	}
-		
-	// tipo correo: 
-	let HTMLTemplate = buildTemplate.buildTemplate(type, data, token)
-
-	
-// Definimos el transporter
-    var transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        host: 'smtp.gmail.com',
-	    port: 465,
-	    secure: true,
-        auth: {
-            user: 'perrunoacount@gmail.com',
-            pass: 'perruno1234'
-        }
-    });
-
-
-    // Definimos el email
-var mailOptions = {
-    from: 'perrunoacount@gmail.com',
-    to: destinyEmail,
-    subject: subject,
-    text: 'Correo',
-    html: HTMLTemplate
-};
-
-// Enviamos el email
-transporter.sendMail(mailOptions, function(error, info){
-    if (error){
-        console.log("error en enviar: "+error);
-        res.send(500, error.message);
-    } else {
-        console.log("Email sent");
-        res.status(200).send({message: "send email"});
-    }
-});
-}
-
-
-function verifyEmail(req, res)
-{
-	services.decodeToken(req.params.token).then(idUser => 
-		{
-			if(idUser === undefined || idUser == '' || !idUser)
-			{
-				return res.status(500).send({message: `Error al confirmar su correo`});	
-			}else
-			{
-				User.updateEmail(idUser).then(userupdate =>
-				{
-					if(userupdate === undefined)
-					{
-						return res.status(500).send({message: `Error al confirmar su correo`});
-					}
-					else
-					{
-						return res.status(200).send({message: 'correo confirmado'});
-					}
-				}).catch((err) =>
-				{
-					return res.status(500).send({message: `Error al confirmar su correo`});
-				});
-			}
-			
-			
-
-		}).catch((error) =>
-		{			
-			return res.status(500).send({message: `Error al confirmar su correo`});
-		});
-	
-
-
-}
-
 module.exports = 
 {
-	sendEmail,
-	buildEmail,
-	verifyEmail
+	sendEmail
 }
 
 
