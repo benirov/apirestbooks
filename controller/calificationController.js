@@ -37,9 +37,11 @@ function insetCalification(req, res)
   calification.email = req.body.email;
   calification.descripcion = req.body.descripcion;
   calification.puntuation = req.body.puntuation;
+  console.log(calification);
 
   calification.save((error, statusProduct) =>
   {
+	// console.log(calification);
     if(error)
     {
       return res.status(500).send({message: `Error al guardar calificación : ${error}`})
