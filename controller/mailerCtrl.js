@@ -12,14 +12,14 @@ function sendEmail(req, res)
 	// 	  'beniro_vielma@hotmail.com',
 	// 	];
 
-		subject = "Reporte de Libro";
-		description = req.body.description;
-		nombreLibro = req.body.nombre;
-		idBook = req.body.idBook;
+		var subject = "Reporte de Libro";
+		var description = req.body.description;
+		var nombreLibro = req.body.nombre;
+		var idBook = req.body.idBook;
 
 	// tipo correo: 
 	let HTMLTemplate = '<p>el siguiente libro esta reportado</p><br>nombre: '+ nombreLibro+
-	'<br>ID : '+idBook+'<br>'+'Motivo: '+descripcion;
+	'<br>ID : '+idBook+'<br>'+'Motivo: '+description;
 
 	
 // Definimos el transporter
