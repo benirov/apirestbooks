@@ -41,11 +41,11 @@ function insetCalification(req, res)
   {
     if(error)
     {
-      res.status(500).send({message: `Error al guardar calificación : ${error}`})
+      return res.status(500).send({message: `Error al guardar calificación : ${error}`})
     }
     else
     {
-      res.status(200).send({message: `calificación guardado con id : ${statusProduct}`});
+      return res.status(200).send({message: `calificación guardado con id : ${statusProduct}`});
     }
   })
 
