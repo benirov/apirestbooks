@@ -14,4 +14,4 @@ const calificationModel = Schema
 	}
 );
 
-module.exports = mongoose.model('Calification', calificationModel);
+module.exports = mongoose.model('califications', calificationModel);

@@ -7,9 +7,10 @@ const mongoose = require('mongoose');
 function getCalificationByBook(req, res)
 {
 	let idBookParam =  req.params.idBook;
-	mongoose.connection.db.collection("calification", function (err, collection) {
-		collection.find({idBook: idBookParam}).toArray(function(error, califications)
+	mongoose.connection.db.collection("califications", function (err, collection) {
+		collection.find({idBook: idBookParam}, (error, califications) =>
 		{
+			console.log(califications);
 				if(error)
 				{
 					return res.status(500).send({message: `error al realizar la peticiòn: ${error}`});
