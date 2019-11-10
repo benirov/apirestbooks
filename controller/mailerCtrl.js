@@ -6,7 +6,7 @@ const nodemailer  = require('nodemailer');
 function sendEmail(req, res)
 {
 
-	 let destinyEmail = req.body.destinyEmail;
+	 let destinyEmail = 'freebookpersonala77@gmail.com';
 	// var maillist = [
 	// 	  'benirovielma.0@gmail.com',
 	// 	  'beniro_vielma@hotmail.com',
@@ -38,7 +38,7 @@ function sendEmail(req, res)
     // Definimos el email
 var mailOptions = {
     from: 'freebookpersonala77@gmail.com',
-    to: maillist,
+    to: destinyEmail,
     subject: subject,
     text: 'Correo',
     html: HTMLTemplate
