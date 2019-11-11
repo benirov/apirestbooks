@@ -160,7 +160,7 @@ function getBookByAuthors(req, res)
 {
 	let perPage = 10;
 	let Start =  req.params.start || 1;
-	let author = req.params.author;
+	let author = req.params.authors;
 
 	let Authores = author.split('---');
 
@@ -205,7 +205,7 @@ function getBookByCategories(req, res)
 {
 	let perPage = 10;
 	let Start =  req.params.start || 1;
-	let serie =  req.params.serie;
+	let serie =  req.params.categories;
 
 	let Series = serie.split('---');
 
