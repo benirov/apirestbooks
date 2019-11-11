@@ -29,8 +29,8 @@ api.post('/reportBook', mailerCtrl.sendEmail);
 
 
 api.get('/book/findByAuthorAndCategort/:author/:serie/:start', bookCtrl.getBookByAuthorAndCategoriy);
-api.get('/book/bookscategories/:categories/:start', bookCtrl.getBookByAuthors);
-api.get('/book/booksauthors/:authors/:start', bookCtrl.getBookByCategories);
+api.get('/book/bookscategories/:categories/:start', bookCtrl.getBookByCategories);
+api.get('/book/booksauthors/:authors/:start', bookCtrl.getBookByAuthors);
 //api.get('/book/authors/:author', bookCtrl.getBookAuthors);
 
 
