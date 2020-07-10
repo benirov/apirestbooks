@@ -294,7 +294,7 @@ function updateBook(req, res)
   console.log('id', id);
   console.log('data', data);
 
-  BooksLibrary.findAndModify(id, data, (error, updateBook) =>
+  BooksLibrary.findOneAndUpdate({_id: id}, data, (error, updateBook) =>
   {
     if(error)
     {
