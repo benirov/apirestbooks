@@ -78,8 +78,9 @@ function solicitarLibro(req, res)
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         host: 'smtp.gmail.com',
-	    port: 465,
-	    secure: true,
+	    port: 587,
+	    ignoreTLS: false,
+        secure: false,
         auth: {
             user: 'freebookpersonala77@gmail.com',
             pass: 'be.37/22'
