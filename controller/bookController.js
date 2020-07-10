@@ -297,7 +297,7 @@ function updateBook(req, res)
 	var ObjectID = require('mongodb').ObjectID;
 	var objId = new ObjectID(id); 
 
-  BooksLibrary.findByIdAndUpdate({id}, data, (error, updateBook) =>
+  BooksLibrary.findByIdAndUpdate({_id: objId}, data, (error, updateBook) =>
   {
     if(error)
     {
