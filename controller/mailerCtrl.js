@@ -1,6 +1,6 @@
 'use strict';
 
-const nodemailer  = require('nodemailer');
+const nodemailer  = require('nodemailer'); 
 
 // email sender function
 function sendEmail(req, res)

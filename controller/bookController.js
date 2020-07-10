@@ -108,7 +108,7 @@ function getBookByAuthor(req, res)
 
 // libro por autor y categoria
 function getBookByAuthorAndCategoriy(req, res)
-{
+{ 
 	let perPage = 10;
 	let Start =  req.params.start || 1;
 	let author = req.params.author;
