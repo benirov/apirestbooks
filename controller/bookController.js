@@ -286,6 +286,24 @@ function getBookByCategories(req, res)
 	}).skip((perPage * Start) - perPage).limit(perPage);
 }
 
+function updateBook(req, res)
+{
+	let id = req.params.id;
+  let update = req.body;
+
+  BooksLibrary.findByIdAndUpdate(id, update, (error, updateBook) =>
+  {
+    if(error)
+    {
+      res.status(500).send({message: `error al actualizar el libro ${error}`});
+    }
+    else
+    {
+      res.status(200).send({book: updateBook});
+    }
+  });
+}
+
 
 
 const BooksLibrary = require('../model/book');
@@ -301,5 +319,6 @@ module.exports =
 	getBookByAuthorAndCategoriy,
 	getBookByAuthors,
 	getBookByCategories,
-	getBookBynameBook
+	getBookBynameBook,
+	updateBook
 }

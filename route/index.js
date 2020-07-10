@@ -26,12 +26,14 @@ api.get('/book/author/:author', bookCtrl.getBookByAuthor);
 api.get('/calification/:idBook', calificationController.getCalificationByBook);
 api.post('/calification', calificationController.insetCalification);
 api.post('/reportBook', mailerCtrl.sendEmail);
+api.post('/solicitarLibro', mailerCtrl.solicitarLibro);
 
 
-api.get('/book/findByAuthorAndCategort/:author/:serie/:start', bookCtrl.getBookByAuthorAndCategoriy);
+api.get('/book/findByAuthorAndCategort/:author?/:serie?/:start', bookCtrl.getBookByAuthorAndCategoriy);
 api.get('/book/bookscategories/:categories/:start', bookCtrl.getBookByCategories);
 api.get('/book/booksauthors/:authors/:start', bookCtrl.getBookByAuthors);
 api.get('/book/booksByName/:name/:start', bookCtrl.getBookBynameBook);
+api.put('/book/:id', bookCtrl.updateBook);
 //api.get('/book/authors/:author', bookCtrl.getBookAuthors);
 
 
