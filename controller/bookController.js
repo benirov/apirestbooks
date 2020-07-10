@@ -291,7 +291,7 @@ function updateBook(req, res)
 	let id = req.params.id;
   let update = req.body;
   let data = { iccn: req.body.lccn };
-  console.log('_id', _id);
+  console.log('id', id);
   console.log('data', data);
 
   BooksLibrary.findAndModify(id, data, (error, updateBook) =>
