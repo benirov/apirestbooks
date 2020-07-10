@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs')
 
+var Schema = mongoose.Schema,
+ObjectId = Schema.ObjectId;
 const bookModel = schema
 (
 	{
-		_id: String,
+		_id: ObjectId,
 		id: Number,
 		title: String,
 		sort: String,
