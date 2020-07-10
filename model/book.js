@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt-nodejs')
 const bookModel = schema
 (
 	{
+		_id: Number,
 		id: Number,
 		title: String,
 		sort: String,

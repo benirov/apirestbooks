@@ -288,10 +288,10 @@ function getBookByCategories(req, res)
 
 function updateBook(req, res)
 {
-	let id = req.params.id;
+	let _id = req.params.id;
   let update = req.body;
 
-  BooksLibrary.findByIdAndUpdate(id, update, (error, updateBook) =>
+  BooksLibrary.findByIdAndUpdate(_id, update, (error, updateBook) =>
   {
     if(error)
     {
