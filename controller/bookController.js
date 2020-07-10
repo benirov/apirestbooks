@@ -288,13 +288,16 @@ function getBookByCategories(req, res)
 
 function updateBook(req, res)
 {
+	
 	let id = req.params.id;
-  let update = req.body;
-  let data = { iccn: req.body.lccn };
-  console.log('id', id);
-  console.log('data', data);
+  	let update = req.body;
+  	let data = { iccn: req.body.lccn };
+  	console.log('id', id);
+	console.log('data', data);
+	var ObjectID = require('mongodb').ObjectID;
+	var objId = new ObjectID(id); 
 
-  BooksLibrary.findOneAndUpdate({_id: id}, data, (error, updateBook) =>
+  BooksLibrary.findOneAndUpdate({_id: objId}, data, (error, updateBook) =>
   {
     if(error)
     {
