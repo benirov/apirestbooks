@@ -96,7 +96,7 @@ var mailOptions = {
 };
 
 // Enviamos el email
-transporter.solicitarLibro(mailOptions, function(error, info){
+transporter.sendMail(mailOptions, function(error, info){
     if (error){
         res.send(500, error.message);
     } else {
