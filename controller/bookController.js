@@ -290,6 +290,8 @@ function updateBook(req, res)
 {
 	let _id = req.params.id;
   let update = req.body;
+  console.log('_id', _id);
+  console.log('update', update);
 
   BooksLibrary.findByIdAndUpdate(_id, update, (error, updateBook) =>
   {
