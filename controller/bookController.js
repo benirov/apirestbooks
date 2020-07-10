@@ -290,10 +290,11 @@ function updateBook(req, res)
 {
 	let _id = req.params.id;
   let update = req.body;
+  let data = { iccn: req.body.lccn };
   console.log('_id', _id);
-  console.log('update', update);
+  console.log('data', data);
 
-  BooksLibrary.findByIdAndUpdate(_id, update, (error, updateBook) =>
+  BooksLibrary.findByIdAndUpdate(_id, data, (error, updateBook) =>
   {
     if(error)
     {
