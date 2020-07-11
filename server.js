@@ -7,7 +7,7 @@ const config = require('./config');
 
 
 
-
+console.log("config.port", config.port);
 
 
 mongoose.connect(config.db, (error, res) =>
