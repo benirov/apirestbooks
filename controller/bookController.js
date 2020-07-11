@@ -291,7 +291,7 @@ function updateBook(req, res)
 	
 	let id = req.params.id;
   	let update = req.body;
-  	let data = { lccn: req.body.lccn };
+  	let data = { image: req.body.image };
   	console.log('id', id);
 	console.log('data', data);
 	var ObjectID = require('mongodb').ObjectID;
