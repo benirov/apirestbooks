@@ -209,7 +209,8 @@ function getBookBynameBook(req, res)
 
 
 	var data = {
-            "title": { "$regex" : '.*' + name + '.*' } ,
+			"title": { "$regex" : '.*' + name + '.*' },
+			"author_sort": { "$regex" : '.*' + name + '.*' },
 	}
 	// let End =  req.params.end;
 	console.log(data);
