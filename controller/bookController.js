@@ -208,10 +208,10 @@ function getBookBynameBook(req, res)
 	let name = req.params.name;
 
 
-	var data = {
-			"title": { "$regex" : '.*' + name + '.*' },
-			"author_sort": { "$regex" : '.*' + name + '.*' },
-	}
+	var data = { $or:[
+			{"title": { "$regex" : '.*' + name + '.*' }},
+			{"author_sort": { "$regex" : '.*' + name + '.*' }},
+	]}
 	// let End =  req.params.end;
 	console.log(data);
 	BooksLibrary.find(data, (error, book) =>
