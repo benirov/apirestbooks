@@ -10,7 +10,7 @@ const config = require('./config');
 console.log("config.port", config.port);
 
 
-mongoose.connect(config.db, (error, res) =>
+mongoose.connect(config.db, { useNewUrlParser: true }, (error, res) =>
 {
 	if (error)
 	{
