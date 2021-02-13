@@ -62,8 +62,9 @@ function getBook(req, res)
 function getBookByCategory(req, res)
 {
 	let category = req.params.category;
+	console.log('category',category);
 
-	BooksLibrary.find({'flags': category}, (error, book) =>
+	BooksLibrary.find({'series_index': category}, (error, book) =>
 	{
 		if(error)
 		{

@@ -44,6 +44,42 @@ function getAuthors(req, res)
 	});
 }
 
+function getAllAuthors(req, res)
+{
+
+	
+	mongoose.connection.db.collection("author", function (err, collection) {
+		collection.find({}).toArray(function(error, authors)
+		{
+				if(error)
+				{
+					return res.status(500).send({message: `error al realizar la peticiòn: ${error}`});
+				}
+				else
+				{
+
+					collection.count((errorP, countP) =>
+					{
+
+						if(errorP)
+						{
+							return res.status(500).send({message: `error al realizar la peticiòn: ${error}`});
+						}else
+						{
+							return res.status(200).send(
+								{
+									authors,
+								})
+						}
+
+					});
+					// return res.status(200).send({authors});	
+				}
+		});
+		
+	});
+}
+
 
 function getAuthor(req, res)
 {
@@ -101,6 +137,7 @@ module.exports =
 	getAuthors,
 	getAuthor,
 	getAuthorsLikeName,
+	getAllAuthors
 }
 
 

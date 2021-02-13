@@ -11,11 +11,15 @@ const api = express.Router();
 
 /*  Routes of books with api */
 
+
 api.get('/authors/:start', authorCtrl.getAuthors); 
 api.get('/authors/:id', authorCtrl.getAuthor);
+api.get('/authors', authorCtrl.getAllAuthors); 
+
+//all categories
 api.get('/category', categoryCtrl.getCategory);
 
-api.get('/authors/:id', authorCtrl.getAuthor);
+// api.get('/authors/:id', authorCtrl.getAuthor);
 
 api.get('/books/:start', bookCtrl.getBooks); 
 
