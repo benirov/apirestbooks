@@ -19,7 +19,7 @@ const bookModel = schema
 		author_sort: String,
 		isbn: String,
 		lccn: String,
-		image: String,
+		// image: String,
 		path: String,
 		flags: Number,
 		uuid: String,
