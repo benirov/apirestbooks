@@ -24,7 +24,8 @@ const bookModel = schema
 		flags: Number,
 		uuid: String,
 		has_cover: Number,
-		last_modified: Date
+		last_modified: Date,
+		tag: Number
 	}
 );
 
