@@ -1,15 +1,14 @@
 'use strict'
 
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt-nodejs')
+const schema = mongoose.Schema;
 
-const calificationModel = Schema
+const authorLikeModel = schema
 (
 	{
-		idBook: {
+		idAuthor: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Book',
+            ref: 'Author',
             require: true,
         },
 		idUser: {
@@ -17,9 +16,7 @@ const calificationModel = Schema
             ref: 'User',
             require: true,
         },
-		descripcion: String,
-		puntuation: Number,
 	}, { timestamps: true }
 );
 
-module.exports = mongoose.model('califications', calificationModel);
+module.exports = mongoose.model('AuthorLike', authorLikeModel, 'like_author');

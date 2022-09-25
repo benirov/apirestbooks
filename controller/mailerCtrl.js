@@ -3,23 +3,18 @@
 const nodemailer  = require('nodemailer'); 
 
 // email sender function
-function sendEmail(req, res)
-{
+exports.sendEmail = async (req, res) =>{
 
-	 let destinyEmail = 'freebookpersonala77@gmail.com';
-	// var maillist = [
-	// 	  'benirovielma.0@gmail.com',
-	// 	  'beniro_vielma@hotmail.com',
-	// 	];
+	let destinyEmail = process.env.EMAILACCOUNT;
 
-		var subject = "Reporte de Libro";
-		var description = req.body.description;
-		var nombreLibro = req.body.nombre;
-		var idBook = req.body.idBook;
+    let subject = "Reporte de Libro";
+    let description = req.body.description;
+    let nombreLibro = req.body.nombre;
+    let idBook = req.body.idBook;
 
 	// tipo correo: 
-	let HTMLTemplate = '<p>el siguiente libro esta reportado</p><br>nombre: '+ nombreLibro+
-	'<br>ID : '+idBook+'<br>'+'Motivo: '+description;
+	let HTMLTemplate = `<p>el siguiente libro esta reportado</p><br>nombre:  ${nombreLibro}
+	<br>ID :+${idBook}+'<br>Motivo: ${description}`;
 
 	
 // Definimos el transporter
@@ -30,15 +25,15 @@ function sendEmail(req, res)
 	    ignoreTLS: false,
         secure: false,
         auth: {
-            user: 'freebookpersonala77@gmail.com',
-            pass: 'be.37/22'
+            user: process.env.EMAILACCOUNT,
+            pass: process.env.PASSWORDEMAILACCOUNT
         }
     });
 
 
     // Definimos el email
 var mailOptions = {
-    from: 'freebookpersonala77@gmail.com',
+    from: process.env.EMAILACCOUNT,
     to: destinyEmail,
     subject: subject,
     text: 'Correo',
@@ -54,24 +49,20 @@ transporter.sendMail(mailOptions, function(error, info){
     }
 });
 }
-
-function solicitarLibro(req, res)
-{
-
-	 let destinyEmail = 'freebookpersonala77@gmail.com';
-	// var maillist = [
-	// 	  'benirovielma.0@gmail.com',
-	// 	  'beniro_vielma@hotmail.com',
-	// 	];
-
-		var subject = "Solicitud";
-		var email = req.body.email;
-		var nombreLibro = req.body.nombre;
-		var idBook = req.body.idBook;
+exports.requestEmailBook = async (email, IdBook, nombre, type = false) =>{
+    let destinyEmail = process.env.EMAILACCOUNT;
+    let subject = "Solicitud";
+    let nombreLibro = nombre;
+    let idBook = IdBook;
 
 	// tipo correo: 
-	let HTMLTemplate = '<p>el siguiente libro fue solicitado</p><br>nombre: '+ nombreLibro+
-	'<br>ID : '+idBook+'<br>'+'email: '+email;
+    let HTMLTemplate = `<p>el siguiente libro fue solicitado</p><br>nombre:  ${nombre}
+	<br>ID : ${IdBook}<br>email: '${email}`;
+    if(type) {
+        HTMLTemplate = `<p>el siguiente libro fue reportado</p><br>nombre:  ${nombre}
+	<br>email: ${email}`;
+    subject = "reporte";
+    }
 
 	
 // Definimos el transporter
@@ -82,35 +73,29 @@ function solicitarLibro(req, res)
 	    ignoreTLS: false,
         secure: false,
         auth: {
-            user: 'freebookpersonala77@gmail.com',
-            pass: 'be.37/22'
+            user: process.env.EMAILACCOUNT,
+            pass: process.env.PASSWORDEMAILACCOUNT
         }
     });
 
 
     // Definimos el email
-var mailOptions = {
-    from: 'freebookpersonala77@gmail.com',
-    to: destinyEmail,
-    subject: subject,
-    text: 'Correo',
-    html: HTMLTemplate
-};
+    var mailOptions = {
+        from: process.env.EMAILACCOUNT,
+        to: destinyEmail,
+        subject: subject,
+        text: 'Correo',
+        html: HTMLTemplate
+    };
 
-// Enviamos el email
-transporter.sendMail(mailOptions, function(error, info){
-    if (error){
-        res.send(500, error.message);
-    } else {
-        res.status(200).jsonp(req.body);
-    }
-});
-}
-
-module.exports = 
-{
-    sendEmail,
-    solicitarLibro
+    // Enviamos el email
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error){
+            return false;
+        } else {
+            return true;
+        }
+    });
 }
 
 

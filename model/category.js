@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs')
 
-const categoryModel = Schema
+const categoriesModel = Schema
 (
 	{
 		id: Number,
@@ -12,4 +12,4 @@ const categoryModel = Schema
 	}
 );
 
-module.exports = mongoose.model('Category', categoryModel);
+module.exports = mongoose.model('Categories', categoriesModel);

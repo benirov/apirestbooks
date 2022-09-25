@@ -1,32 +1,12 @@
-'use strict';
-// const Category = require('../model/category');
+const Categories = require('../model/category');
 
-const mongoose = require('mongoose');
+exports.getCategories = async (req, res) =>{
 
-
-function getCategory(req, res)
-{	
-
-	// console.log(Category);
-	mongoose.connection.db.collection("category", function (err, collection) {
-		collection.find({}).toArray(function(error, category)
-		{
-			if(error)
-			{
-				return res.status(500).send({message: `error al realizar la peticiòn: ${error}`});
-			}
-			else
-			{
-				return res.status(200).send(category)
-			}
-		
-		});
-	});
-}
-
-
-
-module.exports = 
-{
-	getCategory
+	
+	try {
+		let categories = await Categories.find({});
+		return res.status(200).send(categories)
+	} catch (error) {
+		return res.status(500).send({error: `Error in getCategories method : ${error}`})
+	}
 }

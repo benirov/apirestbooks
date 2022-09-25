@@ -1,73 +1,33 @@
-'use strict';
-
 
 const mongoose = require('mongoose');
+const Calification = require('../model/calification');
 
 
-function getCalificationByBook(req, res)
-{
-	let idBookParam =  req.params.idBook;
-	mongoose.connection.db.collection("califications", function (err, collection) {
-		collection.find({idBook: idBookParam}).toArray(function(error, califications)
-		{
-			console.log(califications);
-				if(error)
-				{
-					return res.status(500).send({message: `error al realizar la peticiòn: ${error}`});
-				}
-				else
-				{
+exports.getCalificationByBook = async (req, res) =>{
 
-					
-					return res.status(200).send(
-						{
-							califications,
-						})
-					// return res.status(200).send({authors});	
-				}
-		});
-		
-	});
+	try {
+		let idBookParam =  req.params.idBook;
+		let califications = await Calification.find({idBook: idBookParam});	
+		return res.status(200).send({califications})
+	} catch (error) {
+		return res.status(500).send({error: `Error in getCalificationByBook method : ${error}`})
+	}
 }
 
-function insetCalification(req, res)
-{
-  let calification = new calificationModel();
-  calification.idBook = req.body.idBook;
-  calification.email = req.body.email;
-  calification.descripcion = req.body.descripcion;
-  calification.puntuation = req.body.puntuation;
-  console.log(calification);
+exports.insertCalification = async (req, res) =>{
 
-  calification.save((error, statusProduct) =>
-  {
-	// console.log(calification);
-    if(error)
-    {
-      return res.status(500).send({message: `Error al guardar calificación : ${error}`})
-    }
-    else
-    {
-      return res.status(200).send({message: `calificación guardado con id : ${statusProduct}`});
-    }
-  })
+
+	try {
+		let calification = new Calification();
+		calification.idBook = req.body.idBook;
+		calification.email = req.body.email;
+		calification.descripcion = req.body.descripcion;
+		calification.puntuation = req.body.puntuation;
+	  
+		await calification.save();
+		return res.status(200).send({message: `Calification saved`});
+	} catch (error) {
+		return res.status(500).send({message: `Error in insetCalification method : ${error}`})
+	}
 
 }
-
-
-
-
-const calificationModel = require('../model/calification');
-
-module.exports = 
-{
-	getCalificationByBook,
-	insetCalification
-}
-
-
-
-
-
-
-

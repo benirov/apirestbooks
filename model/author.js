@@ -9,8 +9,8 @@ const authorModel = schema
 		id: Number,
 		name: String,
 		sort: String,
-		link: String
-	}
+		link: String,
+	}, { timestamps: true }
 );
 
-module.exports = mongoose.model('Author', authorModel);
+module.exports = mongoose.model('Author', authorModel, 'author');
